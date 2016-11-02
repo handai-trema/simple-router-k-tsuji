@@ -173,5 +173,9 @@ class SimpleRouter < Trema::Controller
                     raw_data: arp_request.to_binary,
                     actions: SendOutPort.new(interface.port_number))
   end
+  
+  def dump_routing_tb()
+    return @routing_table.dump()
+  end
 end
 # rubocop:enable ClassLength
