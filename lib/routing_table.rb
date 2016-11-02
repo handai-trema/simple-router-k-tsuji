@@ -23,4 +23,17 @@ class RoutingTable
     end
     nil
   end
+  
+  def dump()
+    str = "Netmask Length\tPrefix\n"
+    for netmask_length in @db.each do
+      for prefix in @db[netmask_length].each do
+        str += netmask_length.to_s
+        str += "\t"
+        str += prefix.to_s
+        str += "\n"
+      end
+    end
+    return str
+  end
 end
