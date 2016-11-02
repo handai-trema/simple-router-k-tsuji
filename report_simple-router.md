@@ -21,21 +21,20 @@ Branch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; develop<br>
 <p>以下３つのコマンドを追加した．</p>
 
 ###① ルーティングテーブルの表示
-コネクションID（`dpid`）先にあるスイッチにおいて，`port_monitor`ポートから入ってくるパケットを`port_monitor`ポートへミラーリングする．<br>
+コネクションID（`dpid`）先にあるスイッチにおいるルーティングテーブルの内容をすべて標準出力する．<br>
 コマンドは下記の通りである．<br>
 ```
-./bin/patch_panel mirror dpid port_monitor port_mirror
+./bin/simple_router dump_routing_tb dpid
 ```
 このコマンドは
-[lib/patch_panel.rb](lib/patch_panel.rb)
-における`create_mirror`メソッドを呼び出し，下記の順で処理する．<br>
-####１． `add_mirror_entry`メソッドを呼び出す．
-フローテーブルにMirroringを実現するルールを追加する．<br>
-具体的なルールは，port_monitorが所属するパッチ`port_out`を`@patches`から取得し，`port_monitor`からのPacketInに対しては`port_out`および`port_mirror`へフォワーディングする．<br>
-####２．`@mirrors`へミラーリングを記録する．
-[lib/patch_panel.rb](lib/patch_panel.rb)
-の`start`メソッドにおいてインスタンス変数`@mirrors`（ハッシュ）を宣言し，`@patches`
-と同様に，`add_mirror_entry`メソッドによって実現したミラーをリスト構造として記録する．<br>
+[lib/simple_router.rb](lib/simple_router.rb)
+における`dump_routing_tb`メソッドを呼び出し，下記の順で処理する．<br>
+####１． `RoutingTable`クラスの`dump`メソッドを呼び出す．
+[lib/routing_table.rb](lib/routing_table.rb)
+の`RoutingTable`クラスがもつ`dump`メソッドを呼び出す．<br>
+
+
+
 
 ###② ルーティングテーブルエントリの追加と削除
 
