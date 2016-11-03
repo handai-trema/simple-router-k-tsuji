@@ -58,7 +58,7 @@ Destination     | Next hop
 ./bin/simple_router add_entry2routing_tb dest netmask_length next_hop
 ```
 このコマンドは下記の順で処理する．<br>
-####１．[bin/simple_router](bin/simple_router)において`add_entry2routing_tb`メソッドを呼び出す．
+####１．[bin/simple_router](bin/simple_router)において[lib/routing_table.rb](lib/routing_table.rb)の`add_entry2routing_tb`メソッドを呼び出す．
 ####２．`RoutingTable`クラスの`add`メソッドを呼び出す．
 [lib/routing_table.rb](lib/routing_table.rb)
 における`RoutingTable`クラスの`add`メソッドを呼び出す．<br>
@@ -93,12 +93,12 @@ Destination     | Next hop
 ./bin/simple_router del_entry2routing_tb dest netmask_length
 ```
 このコマンドは下記の順で処理する．<br>
-####１．[bin/simple_router](bin/simple_router)において`del_entry2routing_tb`メソッドを呼び出す．
+####１．[bin/simple_router](bin/simple_router)において[lib/simple_router.rb](lib/simple_router.rb)の`del_entry2routing_tb`メソッドを呼び出す．
 ####２．`RoutingTable`クラスの`deletes`メソッドを呼び出す．
 [lib/routing_table.rb](lib/routing_table.rb)
 における`RoutingTable`クラスの`delete`メソッドを呼び出す．<br>
 ここで，`delete`メソッドは未存であったため，
-新しく追加した．<br>
+新しく定義した．<br>
 `delete`メソッドとは下記のようなハッシュを受け取り，
 受け取ったハッシュの情報に応じたエントリーを`@db`から削除する．<br>
 ```
@@ -129,9 +129,15 @@ Destination     | Next hop
 
 
 ###④ ルータのインタフェース一覧の表示
-
-
-
+インタフェースの情報をすべて表示する．<br>
+コマンドは下記の通りである．<br>
+```
+./bin/simple_router dump_interface
+```
+このコマンドは下記の順で処理する．<br>
+####１．[bin/simple_router](bin/simple_router)において[lib/simple_router.rb](lib/simple_router.rb)の`dump_interface`メソッドを呼び出す．
+####２．[lib/simple_router.rb](lib/simple_router.rb)の`Interface`からインタフェース情報を取得し，文字列化して返す．
+####３．返ってきた文字列を[bin/simple_router](bin/simple_router)において出力する．
 
 
 
