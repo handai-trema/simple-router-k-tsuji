@@ -14,6 +14,12 @@ class RoutingTable
     prefix = IPv4Address.new(options.fetch(:destination)).mask(netmask_length)
     @db[netmask_length][prefix.to_i] = IPv4Address.new(options.fetch(:next_hop))
   end
+  
+  def delete(options)
+    netmask_length = options.fetch(:netmask_length)
+    prefix = IPv4Address.new(options.fetch(:destination)).mask(netmask_length)
+    @db[netmask_length].delete(prefix.to_i)
+  end
 
   def lookup(destination_ip_address)
     MAX_NETMASK_LENGTH.downto(0).each do |each|
@@ -25,12 +31,17 @@ class RoutingTable
   end
   
   def dump()
-    str = "Netmask Length\tPrefix\n"
-    for netmask_length in @db.each do
-      for prefix in @db[netmask_length].each do
+    str = "Destination\t|\tNext hop\n"
+    str += "----------------------------------------\n"
+    MAX_NETMASK_LENGTH.downto(0).each do |netmask_length|
+      for prefix_i, next_hop in @db[netmask_length].each_pair do
+        str += IPv4Address.new(prefix_i).to_s
+        str += "/"
         str += netmask_length.to_s
         str += "\t"
-        str += prefix.to_s
+        str += "|"
+        str += "\t"
+        str += next_hop.to_s
         str += "\n"
       end
     end
