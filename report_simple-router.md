@@ -22,18 +22,20 @@ Branch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; develop<br>
 に以下４つのコマンドを追加した．<br>
 
 ###① ルーティングテーブルの表示
-コネクションID（`dpid`）先にあるスイッチにおいるルーティングテーブルの内容をすべて標準出力する．<br>
+ルーティングテーブルの内容をすべて標準出力する．<br>
 コマンドは下記の通りである．<br>
 ```
-./bin/simple_router dump_routing_tb dpid
+./bin/simple_router dump_routing_tb
 ```
 このコマンドは下記の順で処理する．<br>
 ####１．`RoutingTable`クラスの`dump`メソッドを呼び出す．
+[lib/simple_router.rb](lib/simple_router.rb)
+において，
 [lib/routing_table.rb](lib/routing_table.rb)
-における`RoutingTable`クラスの`dump`メソッドを呼び出す．<br>
+に定義される`RoutingTable`クラスの`dump`メソッドを呼び出す．<br>
 ####２．`RoutingTable`クラスの`@db`を文字列化して返す．
 ib/routing_table.rb](lib/routing_table.rb)
-における`RoutingTable`クラスの`@db`を文字列化して返す．
+における`RoutingTable`クラスの`@db`を文字列化して返す．<br>
 ####３．帰ってきた文字列を出力する．
 [bin/simple_router](bin/simple_router)
 において下記の例のように返ってきた文字列を出力する．<br>
@@ -43,12 +45,42 @@ ib/routing_table.rb](lib/routing_table.rb)
 ```
 Destination	    |	Next hop
 ----------------------------------------
-192.168.1.0/24	|	192.168.2.1
+192.168.1.0/24  |	192.168.2.1
 0.0.0.0/0	      |	192.168.1.2
 ```
 
 
+
 ###② ルーティングテーブルエントリの追加と削除
+ルーティングテーブルに新しいエントリーを追加する．<br>
+コマンドは下記の通りである．<br>
+ここで，`dest`とは宛先IPアドレス，netmask_lengthとは宛先IPアドレスのサブネットマスク長，`next_hop`とは次にホップするIPアドレスを意味する．<br>
+```
+./bin/simple_router add_entry2routing_tb dest netmask_length next_hop
+```
+このコマンドは下記の順で処理する．<br>
+####１．[bin/simple_router](bin/simple_router)において`add_entry2routing_tb`メソッドを呼び出す．
+[bin/simple_router](bin/simple_router)
+において
+[lib/simple_router.rb](lib/simple_router.rb)
+の`add_entry2routing_tb`メソッドを呼び出す．<br>
+####２．`RoutingTable`クラスの`add`メソッドを呼び出す．
+下記の例のように返ってきた文字列を出力する．<br>
+下記の結果は
+```
+./bin/simple_router add_entry2routing_tb 192.168.1.1 24 192.168.2.1
+```
+に対する結果である．<br>
+```
+Destination	    |	Next hop
+----------------------------------------
+192.168.1.0/24  |	192.168.2.1
+0.0.0.0/0	      |	192.168.1.2
+```
+
+
+
+
 
 ###③ ルータのインタフェース一覧の表示
 
@@ -63,4 +95,5 @@ Destination	    |	Next hop
 ##関連リンク
 * [課題 (ルータのCLIを作ろう)](https://github.com/handai-trema/deck/blob/develop/week5/assignment_simple_router.md)
 * [bin/simple_router](bin/simple_router)
+* [lib/simple_router.rb](lib/simple_router.rb)
 * [lib/routing_table.rb](lib/routing_table.rb)
