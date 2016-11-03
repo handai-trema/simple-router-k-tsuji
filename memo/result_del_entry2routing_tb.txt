@@ -1,0 +1,6 @@
+ensyuu2@ensyuu2-VirtualBox:~/workspace4github/simple-router-k-tsuji$ ./bin/simple_router del_entry2routing_tb 192.168.1.1 24
+ensyuu2@ensyuu2-VirtualBox:~/workspace4github/simple-router-k-tsuji$ ./bin/simple_router dump_routing_tb
+Destination	|	Next hop
+----------------------------------------
+0.0.0.0/0	|	192.168.1.2
+
