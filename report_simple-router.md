@@ -138,6 +138,25 @@ Destination     | Next hop
 ####１．[bin/simple_router](bin/simple_router)において[lib/simple_router.rb](lib/simple_router.rb)の`dump_interface`メソッドを呼び出す．
 ####２．[lib/simple_router.rb](lib/simple_router.rb)の`Interface`からインタフェース情報を取得し，文字列化して返す．
 ####３．返ってきた文字列を[bin/simple_router](bin/simple_router)において出力する．
+ここで，[simple_router.conf](simple_router.conf)に対して下記コマンドを実行すると，
+```
+./bin/simple_router dump_interface
+```
+下記の結果を得た．<br>
+```
+Port number | Mac address       | IP adress
+-----------------------------------------------------------------------
+1           | 01:01:01:01:01:01 | 192.168.1.1/24
+2           | 02:02:02:02:02:02 | 192.168.2.1/24
+```
+そして，
+[simple_router.conf](simple_router.conf)
+と得た結果を見比べることによって，コマンドの実行が成功したことを確認した．<br>
+
+
+
+
+
 
 
 
@@ -146,3 +165,4 @@ Destination     | Next hop
 * [bin/simple_router](bin/simple_router)
 * [lib/simple_router.rb](lib/simple_router.rb)
 * [lib/routing_table.rb](lib/routing_table.rb)
+* [simple_router.conf](simple_router.conf)
