@@ -18,7 +18,8 @@ Branch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; develop<br>
 
 
 ##追加したコマンド（ボーナス点対象）
-<p>以下３つのコマンドを追加した．</p>
+[bin/simple_router](bin/simple_router)
+に以下４つのコマンドを追加した．<br>
 
 ###① ルーティングテーブルの表示
 コネクションID（`dpid`）先にあるスイッチにおいるルーティングテーブルの内容をすべて標準出力する．<br>
@@ -26,16 +27,16 @@ Branch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; develop<br>
 ```
 ./bin/simple_router dump_routing_tb dpid
 ```
-このコマンドは
-[lib/simple_router.rb](lib/simple_router.rb)
+このコマンドは下記の順で処理する．<br>
+####１．`RoutingTable`クラスの`dump`メソッドを呼び出す．
+[lib/routing_table.rb](lib/routing_table.rb)
+における`RoutingTable`クラスの`dump`メソッドを呼び出す．<br>
+####２．`RoutingTable`クラスの`@db`を文字列化して返す．
+ib/routing_table.rb](lib/routing_table.rb)
+における`RoutingTable`クラスの`@db`を文字列化して返す．
+####３．帰ってきた文字列を出力する．
+[bin/simple_router](bin/simple_router)
 における`dump_routing_tb`メソッドを呼び出し，下記の順で処理する．<br>
-####１． `RoutingTable`クラスの`dump`メソッドを呼び出す．
-[lib/routing_table.rb](lib/routing_table.rb)
-の`RoutingTable`クラスの`dump`メソッドを呼び出す．<br>
-####２． `RoutingTable`クラスがもつ`dump`メソッド処理
-[lib/routing_table.rb](lib/routing_table.rb)
-の`RoutingTable`クラスがもつ`dump`メソッドを呼び出す．<br>
-
 
 
 
@@ -53,4 +54,5 @@ Branch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; develop<br>
 
 ##関連リンク
 * [課題 (ルータのCLIを作ろう)](https://github.com/handai-trema/deck/blob/develop/week5/assignment_simple_router.md)
+* [bin/simple_router](bin/simple_router)
 * [lib/routing_table.rb](lib/routing_table.rb)
