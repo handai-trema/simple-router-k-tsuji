@@ -36,8 +36,16 @@ ib/routing_table.rb](lib/routing_table.rb)
 における`RoutingTable`クラスの`@db`を文字列化して返す．
 ####３．帰ってきた文字列を出力する．
 [bin/simple_router](bin/simple_router)
-における`dump_routing_tb`メソッドを呼び出し，下記の順で処理する．<br>
-
+において下記の例のように返ってきた文字列を出力する．<br>
+下記の結果は
+[simple_router.conf](simple_router.conf)
+に対する結果である．<br>
+```
+Destination	    |	Next hop
+----------------------------------------
+192.168.1.0/24	|	192.168.2.1
+0.0.0.0/0	      |	192.168.1.2
+```
 
 
 ###② ルーティングテーブルエントリの追加と削除
