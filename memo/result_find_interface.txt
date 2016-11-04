@@ -1,0 +1,13 @@
+ensyuu2@ensyuu2-VirtualBox:~/workspace4github/simple-router-k-tsuji$ ./bin/simple_router find_interface --port 1
+Port number	|	Mac address		|	IP adress
+-----------------------------------------------------------------------
+1		|	01:01:01:01:01:01	|	192.168.1.1/24
+ensyuu2@ensyuu2-VirtualBox:~/workspace4github/simple-router-k-tsuji$ ./bin/simple_router find_interface --mac 02:02:02:02:02:02
+Port number	|	Mac address		|	IP adress
+-----------------------------------------------------------------------
+2		|	02:02:02:02:02:02	|	192.168.2.1/24
+ensyuu2@ensyuu2-VirtualBox:~/workspace4github/simple-router-k-tsuji$ ./bin/simple_router find_interface --ip 192.168.1.1
+Port number	|	Mac address		|	IP adress
+-----------------------------------------------------------------------
+1		|	01:01:01:01:01:01	|	192.168.1.1/24
+
