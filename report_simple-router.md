@@ -17,7 +17,7 @@ Branch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; develop<br>
 
 
 
-##追加したコマンド
+##追加したコマンド（ボーナス加点対象あり）
 [bin/simple_router](bin/simple_router)
 に以下４つのコマンドを追加した．<br>
 
@@ -156,6 +156,53 @@ Port number | Mac address       | IP adress
 
 
 
+###⑤ ルータのインタフェースの検索（ボーナス加点対象）
+インタフェースの情報を検索する．<br>
+コマンドは下記の通りである．<br>
+ここで，`--port`オプションによりポート番号`p`を，
+`--mac`オプションによりMACアドレス`m`を，
+`--ip`オプションによりIPアドレス`i`を指定し，
+いずれかに該当するインタフェースを出力する．<br>
+```
+./bin/simple_router find_interface --port p --mac m --ip i
+```
+このコマンドは下記の順で処理する．<br>
+####１．[bin/simple_router](bin/simple_router)において[lib/simple_router.rb](lib/simple_router.rb)の`find_interface`メソッドを呼び出す．
+このとき，optionsから引数を取得し，
+[lib/simple_router.rb](lib/simple_router.rb)
+の`find_interface`メソッドに渡す．<br>
+####２．[lib/simple_router.rb](lib/simple_router.rb)の`Interface`からインタフェース情報を取得し，オプションのいずれかに該当するインタフェース文字列化して返す．
+####３．返ってきた文字列を[bin/simple_router](bin/simple_router)において出力する．
+ここで，[simple_router.conf](simple_router.conf)に対して下記コマンドを実行すると，
+```
+/bin/simple_router find_interface --port 1
+```
+下記の結果を得た．<br>
+```
+Port number | Mac address       | IP adress
+-----------------------------------------------------------------------
+1           | 01:01:01:01:01:01 | 192.168.1.1/24
+```
+そして，下記コマンドを実行すると，
+```
+./bin/simple_router find_interface --mac 02:02:02:02:02:02
+```
+下記の結果を得た．<br>
+```
+Port number | Mac address       | IP adress
+-----------------------------------------------------------------------
+2           | 02:02:02:02:02:02 | 192.168.2.1/24
+```
+さらに，下記コマンドを実行すると，
+```
+./bin/simple_router find_interface --ip 192.168.1.1
+```
+下記の結果を得た．<br>
+```
+Port number | Mac address       | IP adress
+-----------------------------------------------------------------------
+1           | 01:01:01:01:01:01 | 192.168.1.1/24
+```
 
 
 
