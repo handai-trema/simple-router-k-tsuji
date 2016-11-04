@@ -17,7 +17,7 @@ Branch: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; develop<br>
 
 
 
-##追加したコマンド（ボーナス点対象）
+##追加したコマンド
 [bin/simple_router](bin/simple_router)
 に以下４つのコマンドを追加した．<br>
 
