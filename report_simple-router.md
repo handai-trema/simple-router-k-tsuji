@@ -94,7 +94,7 @@ Destination     | Next hop
 ```
 このコマンドは下記の順で処理する．<br>
 ####１．[bin/simple_router](bin/simple_router)において[lib/simple_router.rb](lib/simple_router.rb)の`del_entry2routing_tb`メソッドを呼び出す．
-####２．`RoutingTable`クラスの`deletes`メソッドを呼び出す．
+####２．`RoutingTable`クラスの`delete`メソッドを呼び出す．
 [lib/routing_table.rb](lib/routing_table.rb)
 における`RoutingTable`クラスの`delete`メソッドを呼び出す．<br>
 ここで，`delete`メソッドは未存であったため，
