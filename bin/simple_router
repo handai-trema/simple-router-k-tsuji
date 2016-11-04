@@ -55,6 +55,22 @@ module SimpleRouterApp
       puts Trema.trema_process('SimpleRouter', options[:socket_dir]).controller.dump_interface()
     end
   end
-
+  
+  desc 'Find interface.'
+  command :find_interface do |c|
+    c.desc 'Location to find socket files'
+    c.flag [:S, :socket_dir], default_value: Trema::DEFAULT_SOCKET_DIR
+    c.flag [:port]
+    c.flag [:mac]
+    c.flag [:ip]
+    
+    c.action do |_global_options, options, args|
+      port = options[:port].to_i
+      mac = options[:mac]
+      ip = options[:ip]
+      puts Trema.trema_process('SimpleRouter', options[:socket_dir]).controller.find_interface(port, mac, ip)
+    end
+  end
+  
   exit run(ARGV)
 end

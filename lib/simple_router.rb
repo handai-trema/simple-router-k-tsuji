@@ -126,7 +126,25 @@ class SimpleRouter < Trema::Controller
     end
     return str
   end
-
+  
+  def find_interface(port, mac, ip)
+    str = "Port number\t|\tMac address\t\t|\tIP adress\n"
+    str += "-----------------------------------------------------------------------\n"
+    for each in Interface.each do
+      if port==each.port_number || mac==each.mac_address.to_s || ip==each.ip_address.to_s
+        str += each.port_number.to_s
+        str += "\t\t|\t"
+        str += each.mac_address.to_s
+        str += "\t|\t"
+        str += each.ip_address.to_s
+        str += "/"
+        str += each.netmask_length.to_s
+        str += "\n"
+      end
+    end
+    return str
+  end
+  
   private
 
   def sent_to_router?(packet_in)
